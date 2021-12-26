@@ -12,7 +12,7 @@ if [ -z "$IPV6" ]; then
         }
         IP="$IP -4"
 else
-        IPTABLES=$(which ip6tabl-legacyes) || {
+        IPTABLES=$(which ip6tables-legacy) || {
                 echo "Can't find ip6tables" >&2
                 exit 1
         }
