@@ -21,4 +21,4 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-0 */2 * * * sudo reboot
+0 */4 * * * sudo reboot
