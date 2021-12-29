@@ -1,11 +1,18 @@
+------- Creación del Robot -------
+
+sudo su;
 apt update && apt full-upgrade -y && apt install ethtool miniupnpd nload mc screen htop docker.io -y&&cd /etc/systemd/system/multi-user.target.wants/&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd.service > miniupnpd.service&&systemctl daemon-reload&&cd /etc/miniupnpd&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd.conf > miniupnpd.conf&&cd /etc/miniupnpd/&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd_functions.sh > miniupnpd_functions.sh&&cd /etc/&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/sysctl.conf > sysctl.conf&&cd&&apt install wondershaper -y&&touch shaper.sh&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/shaper.sh > shaper.sh
 
 reboot
 
-sudo su
-
+sudo su;
 chmod 700 ./shaper.sh && /bin/bash ./shaper.sh&&touch Dockerfile&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/Dockerfile > Dockerfile&&docker build -t uam:latest .
 
-docker run -d --restart always --cap-add=IPC_LOCK uam:latest
+------- Ejecutamos 02 Dockers -------
 
+docker run -d --restart always --cap-add=IPC_LOCK uam:latest&&docker run -d --restart always --cap-add=IPC_LOCK uam:latest
 
+------- Actualizar Crontab para Reiniciar Cada 3 Horas -------
+
+sudo su;
+cd /var/spool/cron/crontabs&&curl https://raw.githubusercontent.com/jrpe1192/p2p/master/root > root
