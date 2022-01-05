@@ -1,18 +1,15 @@
 ------- Creación del Robot -------
-
-sudo su;
-apt update && apt full-upgrade -y && apt install ethtool miniupnpd nload mc screen htop docker.io -y;
+#A:
+sudo su; apt update && apt full-upgrade -y && apt install ethtool miniupnpd nload mc screen htop docker.io -y
+#B:
 cd /etc/systemd/system/multi-user.target.wants/&&wget -n https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd.service&&systemctl daemon-reload&&cd /etc/miniupnpd&&wget -n https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd.conf&&cd /etc/miniupnpd/&&wget -n https://raw.githubusercontent.com/johneramirez/p2p/master/miniupnpd_functions.sh&&cd /etc/&&wget -n https://raw.githubusercontent.com/johneramirez/p2p/master/sysctl.conf&&cd&&apt install wondershaper -y&&touch shaper.sh&&wget -n https://raw.githubusercontent.com/johneramirez/p2p/master/shaper.sh
-reboot
-
-sudo su;
-chmod 700 ./shaper.sh && /bin/bash ./shaper.sh&&touch Dockerfile&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/Dockerfile > Dockerfile&&docker build -t uam:latest .
+#C:
+cd /var/spool/cron/crontabs&&curl https://raw.githubusercontent.com/jrpe1192/p2p/master/root > root&&reboot
+#D:
+sudo su; chmod 700 ./shaper.sh && /bin/bash ./shaper.sh&&touch Dockerfile&&curl https://raw.githubusercontent.com/johneramirez/p2p/master/Dockerfile > Dockerfile&&docker build -t uam:latest .
 
 ------- Ejecutamos 02 Dockers -------
 
 docker run -d --restart always --cap-add=IPC_LOCK uam:latest&&docker run -d --restart always --cap-add=IPC_LOCK uam:latest
 
 ------- Actualizar Crontab para Reiniciar Cada 3 Horas -------
-
-sudo su;
-cd /var/spool/cron/crontabs&&curl https://raw.githubusercontent.com/jrpe1192/p2p/master/root > root
